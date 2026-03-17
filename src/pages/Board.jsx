@@ -20,6 +20,8 @@ const COLUMNS = ["todo", "in_progress", "done"];
 export default function Board() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
+  const [search, setSearch] = useState("");
+  const [priorityFilter, setPriorityFilter] = useState("all");
   const queryClient = useQueryClient();
 
   const { data: tasks = [], isLoading } = useQuery({
