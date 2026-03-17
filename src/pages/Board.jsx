@@ -131,13 +131,45 @@ export default function Board() {
               </p>
             </div>
           </div>
-          <Button
-            onClick={() => handleAddTask("todo")}
-            className="rounded-xl bg-slate-800 hover:bg-slate-700 text-white gap-2 px-5 shadow-sm"
-          >
-            <Plus className="w-4 h-4" />
-            New Task
-          </Button>
+          <div className="flex items-center gap-3">
+            {/* Search */}
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+              <Input
+                placeholder="Search tasks..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="pl-9 pr-8 rounded-xl border-slate-200 w-52 text-sm"
+              />
+              {search && (
+                <button
+                  onClick={() => setSearch("")}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
+            {/* Priority filter */}
+            <Select value={priorityFilter} onValueChange={setPriorityFilter}>
+              <SelectTrigger className="rounded-xl border-slate-200 w-36 text-sm">
+                <SelectValue placeholder="Priority" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Priorities</SelectItem>
+                <SelectItem value="low">Low</SelectItem>
+                <SelectItem value="medium">Medium</SelectItem>
+                <SelectItem value="high">High</SelectItem>
+              </SelectContent>
+            </Select>
+            <Button
+              onClick={() => handleAddTask("todo")}
+              className="rounded-xl bg-slate-800 hover:bg-slate-700 text-white gap-2 px-5 shadow-sm"
+            >
+              <Plus className="w-4 h-4" />
+              New Task
+            </Button>
+          </div>
         </div>
       </header>
 
