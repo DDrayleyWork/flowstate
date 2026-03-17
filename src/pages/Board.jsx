@@ -3,7 +3,15 @@ import { base44 } from "@/api/base44Client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { DragDropContext } from "@hello-pangea/dnd";
 import { Button } from "@/components/ui/button";
-import { Plus, LayoutGrid } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Plus, LayoutGrid, Search, X } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import KanbanColumn from "../components/kanban/KanbanColumn";
 import TaskDialog from "../components/kanban/TaskDialog";
 
