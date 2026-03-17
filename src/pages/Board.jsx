@@ -46,7 +46,19 @@ export default function Board() {
 
   const getColumnTasks = (status) =>
     tasks
-      .filter((t) => t.status === status)
+      .filter((t) => {
+        if (t.status !== status) return false;
+        if (priorityFilter !== "all" && t.priority !== priorityFilter) return false;
+        if (search.trim()) {
+          const q = search.toLowerCase();
+          return (
+            t.title?.toLowerCase().includes(q) ||
+            t.description?.toLowerCase().includes(q) ||
+            t.assignee?.toLowerCase().includes(q)
+          );
+        }
+        return true;
+      })
       .sort((a, b) => (a.order || 0) - (b.order || 0));
 
   const handleDragEnd = (result) => {
